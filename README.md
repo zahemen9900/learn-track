@@ -25,11 +25,23 @@ LearnTrack is a web application designed to help students manage their academic 
 
 ## 🚀 Tech Stack
 
-- Frontend: React.js
-- Styling: Tailwind CSS
+- Frontend:
+  - React.js with TypeScript
+  - Redux Toolkit for state management
+  - React Router for navigation
+  - React Query for data fetching
+  - React Hook Form for form handling
+  - React Beautiful DnD for drag-and-drop
+  - Recharts for data visualization
+- Styling:
+  - Tailwind CSS
+  - React Icons
 - Backend: Node.js/Express
 - Database: MongoDB
 - Authentication: Firebase Auth
+- Testing:
+  - Jest
+  - React Testing Library
 
 ## 🛠️ Installation
 
@@ -51,9 +63,16 @@ cp .env.example .env
 
 4. Start the development server
 ```bash
-npm run dev
+npm start
 ```
 
+5. Additional Scripts
+```bash
+npm run build    # Create production build
+npm run test     # Run tests
+npm run lint     # Run ESLint
+npm run format   # Format code with Prettier
+```
 ## 🔧 Configuration
 
 Create a `.env` file in the root directory with the following variables:
