@@ -1,35 +1,37 @@
+import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import { StatCard } from './StatCard';
+import { getStatsByPeriod, type StatPeriod } from '../../config/dashboardConfig';
+
 interface DashboardStatsProps {
-  period: 'day' | 'week' | 'month';
+  period: StatPeriod;
 }
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15
+    }
+  }
+};
+
 const DashboardStats = ({ period }: DashboardStatsProps) => {
+  const stats = getStatsByPeriod(period);
+
   return (
-    <div className="stats-grid">
-      <div className="stat-card">
-        <h3>Completed Tasks</h3>
-        <p className="stat-number">12</p>
-        <p className="stat-label">This {period}</p>
-      </div>
-      
-      <div className="stat-card">
-        <h3>Pending Tasks</h3>
-        <p className="stat-number">5</p>
-        <p className="stat-label">Due soon</p>
-      </div>
-      
-      <div className="stat-card">
-        <h3>Progress</h3>
-        <p className="stat-number">75%</p>
-        <p className="stat-label">Completion rate</p>
-      </div>
-      
-      <div className="stat-card">
-        <h3>Study Time</h3>
-        <p className="stat-number">24h</p>
-        <p className="stat-label">This {period}</p>
-      </div>
-    </div>
+    <motion.div
+      className="stats-grid"
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+    >
+      {stats.map((stat, index) => (
+        <StatCard key={stat.id} stat={stat} index={index} />
+      ))}
+    </motion.div>
   );
 };
 
-export default DashboardStats; 
+export default DashboardStats;
